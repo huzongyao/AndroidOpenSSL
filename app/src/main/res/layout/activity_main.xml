@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/version_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="some text" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/base64_java"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="some text" />
+
+        <TextView
+            android:id="@+id/base64_openssl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="some text" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/md5_java"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="some text" />
+
+        <TextView
+            android:id="@+id/md5_openssl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="some text" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/colorAccent" />
+    </LinearLayout>
+</ScrollView>
