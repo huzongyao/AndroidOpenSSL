@@ -16,15 +16,19 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0.0"
-        signingConfig signingConfigs.demokey
     }
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.demokey
+        }
         release {
             minifyEnabled false
+            signingConfig signingConfigs.demokey
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

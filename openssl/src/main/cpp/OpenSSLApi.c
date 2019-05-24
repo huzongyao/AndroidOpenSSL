@@ -6,6 +6,7 @@
 #include <malloc.h>
 #include <api_md5.h>
 #include <api_base64.h>
+#include <api_sha1.h>
 #include "ndk_log.h"
 
 #define JNI_FUNC(x) Java_com_hzy_openssl_OpenSSLApi_##x
@@ -35,6 +36,18 @@ JNI_FUNC(getMD5String)(JNIEnv *env, jclass type, jbyteArray input_) {
     jsize length = (*env)->GetArrayLength(env, input_);
     char *output = get_md5_string((char *) input, length);
     LOGI("MD5[%s]", output);
+    (*env)->ReleaseByteArrayElements(env, input_, input, 0);
+    jstring ret = (*env)->NewStringUTF(env, output);
+    free(output);
+    return ret;
+}
+
+JNIEXPORT jstring JNICALL
+JNI_FUNC(getSHA1String)(JNIEnv *env, jclass type, jbyteArray input_) {
+    jbyte *input = (*env)->GetByteArrayElements(env, input_, NULL);
+    jsize length = (*env)->GetArrayLength(env, input_);
+    char *output = get_sha1_string((char *) input, length);
+    LOGI("SHA1[%s]", output);
     (*env)->ReleaseByteArrayElements(env, input_, input, 0);
     jstring ret = (*env)->NewStringUTF(env, output);
     free(output);

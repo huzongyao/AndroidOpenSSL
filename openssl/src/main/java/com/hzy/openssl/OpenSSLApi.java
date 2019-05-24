@@ -11,4 +11,6 @@ public class OpenSSLApi {
     public static native String encodeBase64(byte[] input);
 
     public static native String getMD5String(byte[] input);
+
+    public static native String getSHA1String(byte[] input);
 }

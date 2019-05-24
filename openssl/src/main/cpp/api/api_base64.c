@@ -15,6 +15,7 @@ char *base64_encode(const char *input, int length) {
         return "";
     }
     b64 = BIO_new(BIO_f_base64());
+    BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL);
     bio = BIO_new(BIO_s_mem());
     bio = BIO_push(b64, bio);
     BIO_write(bio, input, length);

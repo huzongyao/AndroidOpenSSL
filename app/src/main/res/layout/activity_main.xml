@@ -16,43 +16,12 @@
             android:layout_height="wrap_content"
             tools:text="some text" />
 
-        <View
+        <Button
+            android:id="@+id/button_crypto_test"
             android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/colorAccent" />
-
-        <TextView
-            android:id="@+id/base64_java"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="some text" />
+            android:layout_marginTop="10dp"
+            android:text="Crypto Test" />
 
-        <TextView
-            android:id="@+id/base64_openssl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="some text" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/colorAccent" />
-
-        <TextView
-            android:id="@+id/md5_java"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="some text" />
-
-        <TextView
-            android:id="@+id/md5_openssl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="some text" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="@color/colorAccent" />
     </LinearLayout>
 </ScrollView>

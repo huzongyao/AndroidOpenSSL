@@ -5,6 +5,9 @@ Compile and study openSSL on Android!
 OpenSSL is a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security
 (TLS) and Secure Sockets Layer (SSL) protocols. It is also a general-purpose cryptography library.
 
+#### Screenshot
+![screenshot](https://github.com/huzongyao/AndroidOpenSSL/blob/master/misc/screen.png?raw=true)
+
 #### Compile OpenSSL Static Library：
  * Compile is easy on Linux OS.
  1. Download All files that we need: NDK, OpenSSL Source Code, Set Env Script:
