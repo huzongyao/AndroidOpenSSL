@@ -11,6 +11,9 @@ import com.blankj.utilcode.util.EncodeUtils;
 import com.blankj.utilcode.util.EncryptUtils;
 import com.hzy.openssl.OpenSSLApi;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -30,6 +33,7 @@ public class CryptoTestActivity extends AppCompatActivity {
     TextView mSha1Openssl;
 
     private byte[] mTestData = "Hello OpenSSL!".getBytes();
+    private ExecutorService mThreadPool;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,30 +45,37 @@ public class CryptoTestActivity extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        runBase64Test();
-        runMD5Test();
-        runSHA1Test();
+        mThreadPool = Executors.newSingleThreadExecutor();
+        mThreadPool.submit(this::runSHA1Test);
+        mThreadPool.submit(this::runMD5Test);
+        mThreadPool.submit(this::runBase64Test);
     }
 
     private void runSHA1Test() {
         String javaString = "SHA1(java):\n" + EncryptUtils.encryptSHA1ToString(mTestData);
         String sslString = "SHA1(OpenSSL):\n" + OpenSSLApi.getSHA1String(mTestData);
-        mSha1Java.setText(javaString);
-        mSha1Openssl.setText(sslString);
+        runOnUiThread(() -> {
+            mSha1Java.setText(javaString);
+            mSha1Openssl.setText(sslString);
+        });
     }
 
     private void runMD5Test() {
         String javaString = "MD5(java):\n" + EncryptUtils.encryptMD5ToString(mTestData);
         String sslString = "MD5(OpenSSL):\n" + OpenSSLApi.getMD5String(mTestData);
-        mMd5Java.setText(javaString);
-        mMd5Openssl.setText(sslString);
+        runOnUiThread(() -> {
+            mMd5Java.setText(javaString);
+            mMd5Openssl.setText(sslString);
+        });
     }
 
     private void runBase64Test() {
         String javaString = "Base64(java):\n" + EncodeUtils.base64Encode2String(mTestData);
         String sslString = "Base64(OpenSSL):\n" + OpenSSLApi.encodeBase64(mTestData);
-        mBase64Java.setText(javaString);
-        mBase64Openssl.setText(sslString);
+        runOnUiThread(() -> {
+            mBase64Java.setText(javaString);
+            mBase64Openssl.setText(sslString);
+        });
     }
 
     @Override
@@ -75,5 +86,11 @@ public class CryptoTestActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        mThreadPool.shutdown();
+        super.onDestroy();
     }
 }
