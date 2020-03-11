@@ -21,18 +21,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
-    buildTypes {
-        debug {
-            externalNativeBuild {
-                cmake {
-                    cFlags.add('-DNATIVE_LOG')
-                }
-            }
-        }
-    }
     externalNativeBuild {
-        cmake {
+        /*cmake {
             path 'src/main/cpp/CMakeLists.txt'
+        }*/
+        ndkBuild {
+            path 'src/main/cpp/Android.mk'
         }
     }
 }

@@ -6,10 +6,11 @@
 #include <openssl/bio.h>
 #include <openssl/evp.h>
 #include <openssl/buffer.h>
+#include <string.h>
 #include "api_base64.h"
 
 char *base64_encode(const char *input, int length) {
-    BIO *b64, *bio;
+    BIO *b64; BIO *bio;
     BUF_MEM *mem = NULL;
     if (!input || !length) {
         return "";
